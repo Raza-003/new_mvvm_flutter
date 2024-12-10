@@ -22,6 +22,11 @@ class UnauthorisedException extends AppExceptions {
       : super(message, 'Unauthorised Request');
 }
 
+class InternalServerException extends AppExceptions {
+  InternalServerException([String? message])
+      : super(message, 'Internal Server Error');
+}
+
 class InvalidInputException extends AppExceptions {
   InvalidInputException([String? message])
       : super(message, 'Unauthorised Input');
