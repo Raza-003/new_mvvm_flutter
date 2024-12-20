@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_architecture_new/utils/routes/routes_name.dart';
 import 'package:mvvm_architecture_new/view/home_screen.dart';
-import 'package:mvvm_architecture_new/view/login_screen.dart';
+import 'package:mvvm_architecture_new/view/login/login_view.dart';
 
 class Routes {
   static Route<dynamic> generateRoute(RouteSettings setting) {
@@ -10,7 +10,7 @@ class Routes {
         return MaterialPageRoute(builder: (BuildContext context) => HomePage());
       case RoutesName.login:
         return MaterialPageRoute(
-            builder: (BuildContext context) => LoginScreen());
+            builder: (BuildContext context) => LoginView());
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(
