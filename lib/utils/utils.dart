@@ -18,6 +18,14 @@ class Utils {
     );
   }
 
+  static toastSuccessMessage(String message) {
+    Fluttertoast.showToast(
+      msg: message,
+      backgroundColor: Colors.green,
+      textColor: Colors.white,
+    );
+  }
+
   static void flushBarErrorMessage(String message, BuildContext context) {
     showFlushbar(
       context: context,
