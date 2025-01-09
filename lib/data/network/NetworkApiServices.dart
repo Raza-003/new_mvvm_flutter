@@ -22,16 +22,36 @@ class NetworkApiServices extends BaseApiServices {
 
 // POST API
   @override
-  Future getPostApiResponse(String url, dynamic data) async {
+  Future<dynamic> getPostApiResponse(String url, dynamic data) async {
     dynamic responseJson;
     try {
-      Response response =
-          await post(Uri.parse(url)).timeout(Duration(seconds: 20));
-      responseJson = responseJson(response);
+      final response = await post(
+        Uri.parse(url),
+        body: jsonEncode(data),
+        headers: {"Content-Type": "application/json"},
+      ).timeout(const Duration(seconds: 20));
+
+      responseJson = _returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet Connection');
     }
     return responseJson;
+  }
+
+  dynamic _returnResponse(Response response) {
+    switch (response.statusCode) {
+      case 200:
+        return jsonDecode(response.body);
+      case 400:
+        throw BadRequestException(response.body.toString());
+      case 401:
+      case 403:
+        throw UnauthorisedException(response.body.toString());
+      case 500:
+      default:
+        throw FetchDataException(
+            'Error occurred with status code: ${response.statusCode}');
+    }
   }
 
 // PATCH/PUT API
