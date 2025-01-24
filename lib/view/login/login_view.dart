@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_architecture_new/utils/utils.dart';
+import 'package:mvvm_architecture_new/view/home_screen.dart';
 import 'package:mvvm_architecture_new/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -143,11 +144,13 @@ class _LoginViewState extends State<LoginView>
                             "Password is too short", context);
                       } else {
                         Map data = {
-                          "email": email,
-                          "password": password,
+                          "cmd": "login",
+                          "usr": email,
+                          "pwd": password,
                         };
                         authViewModel.loginApi(data, context);
-                        Utils.toastSuccessMessage("Login success");
+                      
+                        // Utils.toastSuccessMessage("Login success");
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -159,8 +162,10 @@ class _LoginViewState extends State<LoginView>
                     ),
                     child: const Text(
                       "Sign In",
-                      style:
-                          TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

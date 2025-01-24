@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final response;
+  const HomePage({super.key, this.response});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -10,9 +11,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(
-        children: [],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Home Page"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("Welcome to Home Page"),
+            // Text(widget.response),
+            Center(child: Text(widget.response.toString())),
+          ],
+        ),
       ),
     );
   }
